@@ -74,7 +74,7 @@ var Joi = {
     email: expressJoi.Joi.types.String().min(3).max(55),
     password: expressJoi.Joi.types.String().min(3).max(55).required()    
 }
-router.post('/login', expressJoi.joiValidate(Joi), 
+router.post('/login', expressJoi.joiValidate(Joi),
     (req, res) => {
         models.User.User.findOne({
             email: req.body.email
@@ -98,6 +98,7 @@ router.post('/login', expressJoi.joiValidate(Joi),
                     var token = jwt.sign(payload, auth.superSecret, {
                         expiresIn: 60 * 60 * 24 * 30
                     });
+                    delete(user.password);
                     res.json({
                         status: status.status.SUCCESS.DEFAULT,
                         message: 'Login successful',
