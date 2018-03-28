@@ -128,7 +128,7 @@ router.post('/addTodo', [ expressJoi.joiValidate(Joi), passport.authenticate('us
             } else {
                 res.json({
                     status: status.status.SUCCESS.DEFAULT,
-                    message: 'To-do added successfully.',
+                    message: 'To-do created successfully.',
                     data: data
                 });
             }
@@ -186,7 +186,7 @@ router.get('/search', [ passport.authenticate('userjwt', { session: false } )],
     (req, res) => {
         var todo_name = req.query.todo_name;
         var search = { todo_name: {$regex: todo_name}};
-        models.todos.Todo.findOne(search,(err, data) => {
+        models.todos.Todo.findOne(search, (err, data) => {
             if(err) {
                 res.json({
                     status: status.status.ERROR.BAD_REQUEST,
