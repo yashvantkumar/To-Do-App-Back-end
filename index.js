@@ -1,10 +1,10 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors')
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors')
+const cookieParser = require('cookie-parser');
 require('events').EventEmitter.prototype._maxListeners = 100;
 
-var app = express();
+const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: false
